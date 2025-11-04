@@ -18,6 +18,8 @@ class DetailAktifitasPage extends StatefulWidget {
 
 class _DetailAktifitasPageState extends State<DetailAktifitasPage> {
   final TextEditingController tanggalController = TextEditingController();
+  int filterIndex = 0; // 0 = semua, 1 = sehat, 2 = busuk
+
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +121,32 @@ class _DetailAktifitasPageState extends State<DetailAktifitasPage> {
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
+
+                    // FILTER BUTTONS
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FilterButton(
+                          label: "Semua",
+                          isSelected: filterIndex == 0,
+                          onTap: () => setState(() => filterIndex = 0),
+                        ),
+                        const SizedBox(width: 10),
+                        FilterButton(
+                          label: "Sehat",
+                          isSelected: filterIndex == 1,
+                          onTap: () => setState(() => filterIndex = 1),
+                        ),
+                        const SizedBox(width: 10),
+                        FilterButton(
+                          label: "Busuk",
+                          isSelected: filterIndex == 2,
+                          onTap: () => setState(() => filterIndex = 2),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
 
                     // REAL-TIME ACTIVITY LIST
                     Container(
