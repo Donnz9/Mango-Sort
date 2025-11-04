@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
 import 'package:mango_sort/widgets/activity_card.dart';
-import 'package:mango_sort/widgets/stat_card.dart';
+import 'package:mango_sort/widgets/diagram_batang.dart';
+import 'package:mango_sort/widgets/diagram_lingkar.dart';
 
-class DataStatistikPage extends StatelessWidget {
+class DataStatistikPage extends StatefulWidget {
   final void Function(int index) onNavigate;
   final int currentIndex;
 
@@ -12,6 +13,13 @@ class DataStatistikPage extends StatelessWidget {
     required this.onNavigate,
     required this.currentIndex,
   });
+
+  @override
+  State<DataStatistikPage> createState() => _DataStatistikPageState();
+}
+
+class _DataStatistikPageState extends State<DataStatistikPage> {
+  final TextEditingController tanggalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,51 +56,7 @@ class DataStatistikPage extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20),
 
-                    // STATISTIC CARDS
-                    GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: const [
-                        StatCard(
-                          icon: "🥭",
-                          title: "mangga Segar",
-                          value: "112",
-                          color: AppColors.putih,
-                          textColor: AppColors.hijau,
-                        ),
-
-                        StatCard(
-                          icon: '🥭',
-                          title: 'Mangga Busuk',
-                          value: '37',
-                          color: AppColors.putih,
-                          textColor: AppColors.merah,
-                        ),
-
-                        StatCard(
-                          icon: '📦',
-                          title: 'Total di Proses',
-                          value: '149',
-                          color: AppColors.putih,
-                          textColor: AppColors.hitam,
-                        ),
-
-                        StatCard(
-                          icon: '⚙️',
-                          title: 'Status Conveyor',
-                          value: 'Berjalan',
-                          color: AppColors.putih,
-                          textColor: AppColors.hijau,
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // REAL-TIME ACTIVITY WRAPPED IN CONTAINER
+                    // DATE PICKER CONTAINER
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -100,7 +64,7 @@ class DataStatistikPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.hitam.withOpacity(0.1),
+                            color: AppColors.hitam.withOpacity(0.08),
                             blurRadius: 6,
                             offset: const Offset(0, 3),
                           ),
@@ -110,42 +74,137 @@ class DataStatistikPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Aktivitas Real-Time",
+                            "Pilih Tanggal",
                             style: TextStyle(
-                              fontFamily: 'Rubik',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontFamily: 'Inter',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           const SizedBox(height: 10),
 
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Sehat Terdeteksi',
-                            time: '21/10/2025 12:23:32',
-                            color: AppColors.hijaumuda,
-                            borderColor: AppColors.hijau,
+                          GestureDetector(
+                            onTap: () {
+                              selectDate(
+                                context: context,
+                                controller: tanggalController,
+                                refreshUI: () => setState(() {}),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.hitam),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    tanggalController.text.isEmpty
+                                        ? "Pilih tanggal"
+                                        : tanggalController.text,
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      color:
+                                          tanggalController.text.isEmpty
+                                              ? AppColors.abuabumuda
+                                              : AppColors.hitam,
+                                    ),
+                                  ),
+                                  const Icon(Icons.calendar_month, size: 24),
+                                ],
+                              ),
+                            ),
                           ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Sehat Terdeteksi',
-                            time: '21/10/2025 12:23:28',
-                            color: AppColors.hijaumuda,
-                            borderColor: AppColors.hijau,
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+
+                    // PERBANDINGAN MANGGA SEHAT VS BUSUK
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.putih,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.hitam.withOpacity(0.08),
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
                           ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Busuk Terdeteksi',
-                            time: '21/10/2025 12:23:19',
-                            color: AppColors.merahmuda,
-                            borderColor: AppColors.merah,
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Perbandingan mangga sehat vs busuk",
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Sehat Terdeteksi',
-                            time: '21/10/2025 12:23:14',
-                            color: AppColors.hijaumuda,
-                            borderColor: AppColors.hijau,
+
+                          // PIE CHART DIAGRAM LIGKAR
+                          MangoPieChart(
+                            sehat: 32, // nanti tinggal ganti dari API
+                            busuk: 8,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+
+                    // MANGGA SEHAT PER JAM
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.putih,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.hitam.withOpacity(0.08),
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Mangga sehat per jam",
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+
+                          // Diagram Batang
+                          const MangoBarChart(
+                            data: [
+                              0,
+                              0,
+                              0,
+                              0,
+                              20,
+                              30,
+                            ], // contoh data (jam 05:00 - 06:00 aktif)
+                            labels: [
+                              "00",
+                              "01",
+                              "02",
+                              "03",
+                              "05",
+                              "06",
+                            ], // label jam
                           ),
                         ],
                       ),
