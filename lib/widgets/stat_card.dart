@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
 
 class StatCard extends StatelessWidget {
-  final String icon;
+  final Widget icon; // ← ubah dari String menjadi Widget
   final String title;
   final String value;
   final Color color;
@@ -35,7 +35,7 @@ class StatCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(icon, style: const TextStyle(fontSize: 36)),
+          icon, // ← bisa Image.asset, Icon, atau Text
           const SizedBox(height: 8),
           Text(
             value,

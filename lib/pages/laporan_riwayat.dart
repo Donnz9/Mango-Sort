@@ -147,10 +147,9 @@ class _LaporanRiwayatPageState extends State<LaporanRiwayatPage> {
                                 valueColor: AppColors.merah,
                               ),
                               LaporanCard(
-                                icon: const Icon(
-                                  Icons.inventory_2_rounded,
-                                  size: 40,
-                                  color: AppColors.hitam,
+                                icon: Image.asset(
+                                  'assets/images/total.png',
+                                  height: 40,
                                 ),
                                 value: "149",
                                 label: "Total",

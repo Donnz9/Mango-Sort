@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
 
+import 'package:flutter/material.dart';
+import 'package:mango_sort/theme/colors.dart';
+
 class ActivityCard extends StatelessWidget {
-  final String emoji;
+  final Widget icon; // Ubah dari String emoji → Widget icon
   final String title;
   final String time;
   final Color color;
@@ -10,7 +13,7 @@ class ActivityCard extends StatelessWidget {
 
   const ActivityCard({
     super.key,
-    required this.emoji,
+    required this.icon,
     required this.title,
     required this.time,
     required this.color,
@@ -37,7 +40,7 @@ class ActivityCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 28)),
+          icon, // tampilkan widget icon apapun di sini
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -86,9 +89,9 @@ Future<void> selectDate({
       return Theme(
         data: Theme.of(context).copyWith(
           colorScheme: const ColorScheme.light(
-            primary: AppColors.hijau, 
+            primary: AppColors.hijau,
             onPrimary: Colors.white,
-            onSurface: AppColors.hitam, 
+            onSurface: AppColors.hitam,
           ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
@@ -130,10 +133,7 @@ class FilterButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? AppColors.hijau : Colors.transparent,
           borderRadius: BorderRadius.circular(30),
-          border: Border.all(
-            color: AppColors.hijau,
-            width: 2,
-          ),
+          border: Border.all(color: AppColors.hijau, width: 2),
         ),
         child: Text(
           label,
@@ -210,12 +210,7 @@ class LaporanCard extends StatelessWidget {
   }
 }
 
-TableRow buildTableRow(
-  String musim,
-  String sehat,
-  String busuk,
-  String total,
-) {
+TableRow buildTableRow(String musim, String sehat, String busuk, String total) {
   return TableRow(
     children: [
       _buildCell(musim, isLeft: true),
@@ -233,10 +228,7 @@ Widget _buildCell(String text, {bool isLeft = false}) {
       alignment: isLeft ? Alignment.centerLeft : Alignment.center,
       child: Text(
         text,
-        style: const TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 11,
-        ),
+        style: const TextStyle(fontFamily: 'Inter', fontSize: 11),
       ),
     ),
   );
@@ -250,9 +242,7 @@ void showCustomDateDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: StatefulBuilder(
@@ -273,11 +263,12 @@ void showCustomDateDialog(BuildContext context) {
                   TextField(
                     controller: startDateController,
                     readOnly: true,
-                    onTap: () => selectDate(
-                      context: context,
-                      controller: startDateController,
-                      refreshUI: () => setStateDialog(() {}),
-                    ),
+                    onTap:
+                        () => selectDate(
+                          context: context,
+                          controller: startDateController,
+                          refreshUI: () => setStateDialog(() {}),
+                        ),
                     decoration: _customInputDecoration(),
                   ),
                   const SizedBox(height: 14),
@@ -293,11 +284,12 @@ void showCustomDateDialog(BuildContext context) {
                   TextField(
                     controller: endDateController,
                     readOnly: true,
-                    onTap: () => selectDate(
-                      context: context,
-                      controller: endDateController,
-                      refreshUI: () => setStateDialog(() {}),
-                    ),
+                    onTap:
+                        () => selectDate(
+                          context: context,
+                          controller: endDateController,
+                          refreshUI: () => setStateDialog(() {}),
+                        ),
                     decoration: _customInputDecoration(),
                   ),
                   const SizedBox(height: 20),
@@ -367,9 +359,7 @@ InputDecoration _customInputDecoration() {
   return InputDecoration(
     hintText: "dd/mm/yyyy",
     suffixIcon: const Icon(Icons.calendar_month),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
       borderSide: const BorderSide(color: AppColors.abuabumuda),

@@ -55,9 +55,12 @@ class PengaturanPage extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: const [
+                      children: [
                         StatCard(
-                          icon: "🥭",
+                          icon: Image.asset(
+                            'assets/images/sehat.png',
+                            height: 40,
+                          ),
                           title: "mangga Segar",
                           value: "112",
                           color: AppColors.putih,
@@ -65,27 +68,14 @@ class PengaturanPage extends StatelessWidget {
                         ),
 
                         StatCard(
-                          icon: '🥭',
+                          icon: Image.asset(
+                            'assets/images/busuk.png',
+                            height: 40,
+                          ),
                           title: 'Mangga Busuk',
                           value: '37',
                           color: AppColors.putih,
                           textColor: AppColors.merah,
-                        ),
-
-                        StatCard(
-                          icon: '📦',
-                          title: 'Total di Proses',
-                          value: '149',
-                          color: AppColors.putih,
-                          textColor: AppColors.hitam,
-                        ),
-
-                        StatCard(
-                          icon: '⚙️',
-                          title: 'Status Conveyor',
-                          value: 'Berjalan',
-                          color: AppColors.putih,
-                          textColor: AppColors.hijau,
                         ),
                       ],
                     ),
@@ -120,33 +110,15 @@ class PengaturanPage extends StatelessWidget {
                           const SizedBox(height: 10),
 
                           ActivityCard(
-                            emoji: '🥭',
+                           icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 32,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:32',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
-                          ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Sehat Terdeteksi',
-                            time: '21/10/2025 12:23:28',
-                            color: AppColors.hijaumuda,
-                            borderColor: AppColors.hijau,
-                          ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Busuk Terdeteksi',
-                            time: '21/10/2025 12:23:19',
-                            color: AppColors.merahmuda,
-                            borderColor: AppColors.merah,
-                          ),
-                          ActivityCard(
-                            emoji: '🥭',
-                            title: 'Mangga Sehat Terdeteksi',
-                            time: '21/10/2025 12:23:14',
-                            color: AppColors.hijaumuda,
-                            borderColor: AppColors.hijau,
-                          ),
+                          )
                         ],
                       ),
                     ),

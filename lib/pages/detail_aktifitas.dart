@@ -164,58 +164,82 @@ class _DetailAktifitasPageState extends State<DetailAktifitasPage> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:32',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:28',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/busuk.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Busuk Terdeteksi',
                             time: '21/10/2025 12:23:19',
                             color: AppColors.merahmuda,
                             borderColor: AppColors.merah,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:14',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/busuk.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Busuk Terdeteksi',
                             time: '21/10/2025 12:23:19',
                             color: AppColors.merahmuda,
                             borderColor: AppColors.merah,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:14',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/busuk.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Busuk Terdeteksi',
                             time: '21/10/2025 12:23:19',
                             color: AppColors.merahmuda,
                             borderColor: AppColors.merah,
                           ),
                           ActivityCard(
-                            emoji: '🥭',
+                            icon: Image.asset(
+                              'assets/images/sehat.png',
+                              height: 36,
+                            ),
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:14',
                             color: AppColors.hijaumuda,
