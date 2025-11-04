@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
+import 'package:mango_sort/widgets/main_navigation.dart';
 import 'package:mango_sort/widgets/textfields.dart';
 import 'package:mango_sort/pages/ganti_pass.dart';
 import 'package:mango_sort/pages/dashboard.dart';
@@ -76,7 +77,10 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 25),
 
                   //email
-                  CustomTextField(label: "Email", controller: emailController),
+                  CustomTextField(
+                    label: "Email",
+                    controller: emailController,
+                  ),
                   const SizedBox(height: 10),
 
                   // Password baru
@@ -98,11 +102,14 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DashboardPage(onNavigate: (int index) {  },),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                    // DashboardPage(onNavigate: (int index) {}, currentIndex: 0,),
+                                    const MainNavigation(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.hijau,

@@ -5,13 +5,19 @@ import 'package:mango_sort/widgets/activity_card.dart';
 import 'package:mango_sort/widgets/stat_card.dart';
 
 class LaporanRiwayatPage extends StatelessWidget {
-  const LaporanRiwayatPage({super.key, required void Function(int index) onNavigate});
+  final void Function(int index) onNavigate;
+  final int currentIndex;
+
+  const LaporanRiwayatPage({
+    super.key,
+    required this.onNavigate,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      bottomNavigationBar: _buildBottomNavBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -151,27 +157,6 @@ class LaporanRiwayatPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  // BOTTOM NAVIGATION BAR
-  Widget _buildBottomNavBar() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.putih,
-        boxShadow: [BoxShadow(color: AppColors.hitam, blurRadius: 4)],
-      ),
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.hijau,
-        unselectedItemColor: AppColors.abuabu,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Iconsax.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Iconsax.chart), label: ''),
-          BottomNavigationBarItem(icon: Icon(Iconsax.document), label: ''),
-          BottomNavigationBarItem(icon: Icon(Iconsax.setting), label: ''),
-        ],
       ),
     );
   }

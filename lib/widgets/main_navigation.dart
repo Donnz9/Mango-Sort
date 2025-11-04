@@ -4,10 +4,11 @@ import 'package:mango_sort/pages/data_statistik.dart';
 import 'package:mango_sort/pages/detail_aktifitas.dart';
 import 'package:mango_sort/pages/laporan_riwayat.dart';
 import 'package:mango_sort/pages/pengaturan.dart';
-import 'package:mango_sort/theme/colors.dart';
 import 'package:mango_sort/widgets/nav_item.dart';
+import 'package:mango_sort/theme/colors.dart';
 
 class MainNavigation extends StatefulWidget {
+  // final UserModel user;
   const MainNavigation({super.key});
 
   @override
@@ -15,47 +16,48 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
+  // late UserModel currentUser;
 
   @override
   void initState() {
     super.initState();
+    // currentUser = widget.user;
   }
+
+  // UPDATE USER MODEL DARI PROFILE
+  // void _updateUserModel(UserModel updatedUser) {
+  //   setState(() => currentUser = updatedUser);
+  // }
 
   void _onItemTapped(int index) {
     setState(() => _selectedIndex = index);
   }
 
-
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-      DashboardPage(onNavigate: _onItemTapped),
-      DetailAktifitasPage(onNavigate: _onItemTapped),
-      DataStatistikPage(onNavigate: _onItemTapped),
-      LaporanRiwayatPage(onNavigate: _onItemTapped),
-      PengaturanPage(onNavigate: _onItemTapped),
+      DashboardPage(onNavigate: _onItemTapped, currentIndex: _selectedIndex,),
+      DetailAktifitasPage(onNavigate: _onItemTapped, currentIndex: _selectedIndex,),
+      DataStatistikPage(onNavigate: _onItemTapped, currentIndex: _selectedIndex,),
+      LaporanRiwayatPage(onNavigate: _onItemTapped, currentIndex: _selectedIndex,),
+      PengaturanPage(onNavigate: _onItemTapped, currentIndex: _selectedIndex,),
     ];
 
     return Scaffold(
-      floatingActionButton: SizedBox(
-        width: 60,
-        height: 60,
-        child: FloatingActionButton(
-          onPressed: () => _onItemTapped(3),
-          backgroundColor: AppColors.hijau,
-          shape: const CircleBorder(),
-          elevation: 10,
-          child: const Icon(Icons.home, size: 30, color: AppColors.putih),
+      backgroundColor: AppColors.putih,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(child: _pages[_selectedIndex]),
+          ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: ShadowedBottomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-        shadowColor: AppColors.hitam, // Sesuaikan warna bayangan
-        shadowElevation: 8.0, // Sesuaikan ketebalan bayangan
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
 }
+
