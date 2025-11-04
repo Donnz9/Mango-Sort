@@ -3,7 +3,6 @@ import 'package:mango_sort/theme/colors.dart';
 import 'package:mango_sort/widgets/main_navigation.dart';
 import 'package:mango_sort/widgets/textfields.dart';
 import 'package:mango_sort/pages/ganti_pass.dart';
-import 'package:mango_sort/pages/dashboard.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

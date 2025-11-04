@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:mango_sort/theme/colors.dart';
 import 'package:mango_sort/widgets/activity_card.dart';
 import 'package:mango_sort/widgets/stat_card.dart';
