@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
 import 'package:mango_sort/widgets/activity_card.dart';
-import 'package:mango_sort/widgets/stat_card.dart';
 
-class DetailAktifitasPage extends StatelessWidget {
+class DetailAktifitasPage extends StatefulWidget {
   final void Function(int index) onNavigate;
   final int currentIndex;
 
@@ -12,6 +11,13 @@ class DetailAktifitasPage extends StatelessWidget {
     required this.onNavigate,
     required this.currentIndex,
   });
+
+  @override
+  State<DetailAktifitasPage> createState() => _DetailAktifitasPageState();
+}
+
+class _DetailAktifitasPageState extends State<DetailAktifitasPage> {
+  final TextEditingController tanggalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +41,10 @@ class DetailAktifitasPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
 
-              // Bagian isi dengan padding
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -48,51 +52,7 @@ class DetailAktifitasPage extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20),
 
-                    // STATISTIC CARDS
-                    GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: const [
-                        StatCard(
-                          icon: "🥭",
-                          title: "mangga Segar",
-                          value: "112",
-                          color: AppColors.putih,
-                          textColor: AppColors.hijau,
-                        ),
-
-                        StatCard(
-                          icon: '🥭',
-                          title: 'Mangga Busuk',
-                          value: '37',
-                          color: AppColors.putih,
-                          textColor: AppColors.merah,
-                        ),
-
-                        StatCard(
-                          icon: '📦',
-                          title: 'Total di Proses',
-                          value: '149',
-                          color: AppColors.putih,
-                          textColor: AppColors.hitam,
-                        ),
-
-                        StatCard(
-                          icon: '⚙️',
-                          title: 'Status Conveyor',
-                          value: 'Berjalan',
-                          color: AppColors.putih,
-                          textColor: AppColors.hijau,
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // REAL-TIME ACTIVITY WRAPPED IN CONTAINER
+                    // DATE PICKER CONTAINER
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -100,7 +60,7 @@ class DetailAktifitasPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.hitam.withOpacity(0.1),
+                            color: AppColors.hitam.withOpacity(0.08),
                             blurRadius: 6,
                             offset: const Offset(0, 3),
                           ),
@@ -110,15 +70,74 @@ class DetailAktifitasPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Aktivitas Real-Time",
+                            "Pilih Tanggal",
                             style: TextStyle(
-                              fontFamily: 'Rubik',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontFamily: 'Inter',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           const SizedBox(height: 10),
 
+                          GestureDetector(
+                            onTap: () {
+                              selectDate(
+                                context: context,
+                                controller: tanggalController,
+                                refreshUI: () => setState(() {}),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.hitam),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    tanggalController.text.isEmpty
+                                        ? "Pilih tanggal"
+                                        : tanggalController.text,
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      color:
+                                          tanggalController.text.isEmpty
+                                              ? AppColors.abuabumuda
+                                              : AppColors.hitam,
+                                    ),
+                                  ),
+                                  const Icon(Icons.calendar_month, size: 24),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // REAL-TIME ACTIVITY LIST
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.putih,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.hitam.withOpacity(0.08),
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
                           ActivityCard(
                             emoji: '🥭',
                             title: 'Mangga Sehat Terdeteksi',
@@ -130,6 +149,34 @@ class DetailAktifitasPage extends StatelessWidget {
                             emoji: '🥭',
                             title: 'Mangga Sehat Terdeteksi',
                             time: '21/10/2025 12:23:28',
+                            color: AppColors.hijaumuda,
+                            borderColor: AppColors.hijau,
+                          ),
+                          ActivityCard(
+                            emoji: '🥭',
+                            title: 'Mangga Busuk Terdeteksi',
+                            time: '21/10/2025 12:23:19',
+                            color: AppColors.merahmuda,
+                            borderColor: AppColors.merah,
+                          ),
+                          ActivityCard(
+                            emoji: '🥭',
+                            title: 'Mangga Sehat Terdeteksi',
+                            time: '21/10/2025 12:23:14',
+                            color: AppColors.hijaumuda,
+                            borderColor: AppColors.hijau,
+                          ),
+                          ActivityCard(
+                            emoji: '🥭',
+                            title: 'Mangga Busuk Terdeteksi',
+                            time: '21/10/2025 12:23:19',
+                            color: AppColors.merahmuda,
+                            borderColor: AppColors.merah,
+                          ),
+                          ActivityCard(
+                            emoji: '🥭',
+                            title: 'Mangga Sehat Terdeteksi',
+                            time: '21/10/2025 12:23:14',
                             color: AppColors.hijaumuda,
                             borderColor: AppColors.hijau,
                           ),
