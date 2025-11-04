@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mango_sort/theme/colors.dart';
 
-import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-
 class ActivityCard extends StatelessWidget {
   final Widget icon; // Ubah dari String emoji → Widget icon
   final String title;

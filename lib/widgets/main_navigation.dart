@@ -3,7 +3,7 @@ import 'package:mango_sort/pages/dashboard.dart';
 import 'package:mango_sort/pages/data_statistik.dart';
 import 'package:mango_sort/pages/detail_aktifitas.dart';
 import 'package:mango_sort/pages/laporan_riwayat.dart';
-import 'package:mango_sort/pages/pengaturan.dart';
+import 'package:mango_sort/pages/pengaturan/pengaturan.dart';
 import 'package:mango_sort/widgets/nav_item.dart';
 import 'package:mango_sort/theme/colors.dart';
 
