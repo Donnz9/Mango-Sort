@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-import 'package:mango_sort/widgets/textfields.dart';
-import 'package:mango_sort/pages/login.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
+import 'package:mango_sort/frontend/widgets/textfields.dart';
+import 'package:mango_sort/frontend/pages/login.dart';
 
 class GantiPass extends StatefulWidget {
   const GantiPass({super.key});

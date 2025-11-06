@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;

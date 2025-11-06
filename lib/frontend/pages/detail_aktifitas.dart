@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-import 'package:mango_sort/widgets/activity_card.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
+import 'package:mango_sort/frontend/widgets/activity_card.dart';
 
 class DetailAktifitasPage extends StatefulWidget {
   final void Function(int index) onNavigate;

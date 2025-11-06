@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-import 'package:mango_sort/widgets/main_navigation.dart';
-import 'package:mango_sort/widgets/textfields.dart';
-import 'package:mango_sort/pages/ganti_pass.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
+import 'package:mango_sort/frontend/widgets/main_navigation.dart';
+import 'package:mango_sort/frontend/widgets/textfields.dart';
+import 'package:mango_sort/frontend/pages/ganti_pass.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

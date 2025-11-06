@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-import 'package:mango_sort/widgets/activity_card.dart';
-import 'package:mango_sort/widgets/stat_card.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
+import 'package:mango_sort/frontend/widgets/activity_card.dart';
+import 'package:mango_sort/frontend/widgets/stat_card.dart';
 
 class DashboardPage extends StatelessWidget {
   final void Function(int index) onNavigate;

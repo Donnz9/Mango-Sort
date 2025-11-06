@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
 
 class MangoPieChart extends StatelessWidget {
   final int sehat;

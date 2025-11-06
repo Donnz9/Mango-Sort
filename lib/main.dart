@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/pages/splash_screen.dart';
+import 'package:mango_sort/frontend/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SplashScreen(), // <-- arahkan ke SplashScreen
+      home: const SplashScreen(), // arahkan ke SplashScreen
     );
   }
 }

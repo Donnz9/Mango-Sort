@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/theme/colors.dart';
-import 'package:mango_sort/widgets/activity_card.dart';
-import 'package:mango_sort/widgets/diagram_batang.dart';
-import 'package:mango_sort/widgets/diagram_lingkar.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
+import 'package:mango_sort/frontend/widgets/activity_card.dart';
+import 'package:mango_sort/frontend/widgets/diagram_batang.dart';
+import 'package:mango_sort/frontend/widgets/diagram_lingkar.dart';
 
 class DataStatistikPage extends StatefulWidget {
   final void Function(int index) onNavigate;

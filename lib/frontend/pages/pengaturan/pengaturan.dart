@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mango_sort/pages/login.dart';
-import 'package:mango_sort/theme/colors.dart';
+import 'package:mango_sort/frontend/pages/login.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
 
 class PengaturanPage extends StatefulWidget {
   final void Function(int index) onNavigate;

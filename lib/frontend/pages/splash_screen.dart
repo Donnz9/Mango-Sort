@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mango_sort/theme/colors.dart';
+import 'package:mango_sort/frontend/theme/colors.dart';
 // import 'package:mango_sort/pages/ganti_pass.dart';
-import 'package:mango_sort/pages/login.dart';
+import 'package:mango_sort/frontend/pages/login.dart';
 
 
 class SplashScreen extends StatefulWidget {
