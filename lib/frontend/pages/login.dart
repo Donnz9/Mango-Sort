@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mango_sort/backend/firebase_auth_service.dart';
 import 'package:mango_sort/frontend/theme/colors.dart';
 import 'package:mango_sort/frontend/widgets/main_navigation.dart';
+import 'package:mango_sort/frontend/widgets/snackbar.dart';
 import 'package:mango_sort/frontend/widgets/textfields.dart';
 import 'package:mango_sort/frontend/pages/ganti_pass.dart';
 
@@ -14,10 +16,68 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final FirebaseAuthService _authService = FirebaseAuthService();
 
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
+
+  Future<void> _handleLogin() async {
+    setState(() => _isLoading = true);
+
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    // 1. Cek email kosong
+    if (email.isEmpty) {
+      Snackbar.show(context, "Email tidak boleh kosong.", isError: true);
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    // 2. Cek format email valid
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+    if (!emailRegex.hasMatch(email)) {
+      Snackbar.show(context, "Format email tidak valid.", isError: true);
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    // 3. Cek password kosong
+    if (password.isEmpty) {
+      Snackbar.show(context, "Password tidak boleh kosong.", isError: true);
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    // 4. Cek minimal karakter password
+    if (password.length < 6) {
+      Snackbar.show(context, "Password minimal 6 karakter.", isError: true);
+      setState(() => _isLoading = false);
+      return;
+    }
+
+    // 5. Proses Login Firebase
+    print("Mulai login...");
+    final message = await _authService.loginUser(email, password);
+    print("Hasil login: $message");
+
+    setState(() => _isLoading = false);
+
+    // 6. Login sukses
+    if (message == null) {
+      if (mounted) {
+        Snackbar.show(context, "Login berhasil");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const MainNavigation()),
+        );
+      }
+      return;
+    }
+
+    // 7. Login gagal
+    Snackbar.show(context, "Email & Password salah", isError: true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +136,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 25),
 
                   //email
-                  CustomTextField(
-                    label: "Email",
-                    controller: emailController,
-                  ),
+                  CustomTextField(label: "Email", controller: emailController),
                   const SizedBox(height: 10),
 
                   // Password baru
@@ -99,17 +156,17 @@ class _LoginState extends State<Login> {
                     width: 172,
                     height: 38,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) =>
-                                    // DashboardPage(onNavigate: (int index) {}, currentIndex: 0,),
-                                    const MainNavigation(),
-                          ),
-                        );
-                      },
+                      onPressed:
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder:
+                          //         (context) =>
+                          //             // DashboardPage(onNavigate: (int index) {}, currentIndex: 0,),
+                          //             const MainNavigation(),
+                          //   ),
+                          // );
+                          _isLoading ? null : _handleLogin,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.hijau,
                         elevation: 4,
@@ -118,16 +175,40 @@ class _LoginState extends State<Login> {
                         ),
                         shadowColor: AppColors.hitam.withOpacity(0.3),
                       ),
-                      child: const Text(
-                        "Masuk",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: AppColors.putih,
-                        ),
-                      ),
+                      child:
+                          _isLoading
+                              ? const CircularProgressIndicator(
+                                color: AppColors.putih,
+                                strokeWidth: 2,
+                              )
+                              : const Text(
+                                "Masuk",
+                                style: TextStyle(
+                                  fontFamily: 'Rubik',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: AppColors.putih,
+                                ),
+                              ),
                     ),
+                    //     style: ElevatedButton.styleFrom(
+                    //       backgroundColor: AppColors.hijau,
+                    //       elevation: 4,
+                    //       shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(10),
+                    //       ),
+                    //       shadowColor: AppColors.hitam.withOpacity(0.3),
+                    //     ),
+                    //     child: const Text(
+                    //       "Masuk",
+                    //       style: TextStyle(
+                    //         fontFamily: 'Rubik',
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 20,
+                    //         color: AppColors.putih,
+                    //       ),
+                    //     ),
+                    //   ),
                   ),
                   const SizedBox(height: 10),
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344979839373",
+    "project_id": "mango-sort-afbe9",
+    "storage_bucket": "mango-sort-afbe9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344979839373:android:d0ed31ba767624234c85c4",
+        "android_client_info": {
+          "package_name": "com.example.mango_sort"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgBNNHc60cODEKC47OBKFZ6CQskp7eeVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
